@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electronics Store</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">ElectroShop 🚀</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6">
+        <h2 class="text-xl font-semibold mb-4 text-gray-700">Featured Electronics</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {% for product in products %}
+            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
+                <h3 class="text-lg font-bold text-gray-800">{{ product.name }}</h3>
+                <p class="text-blue-600 font-semibold mt-2">₹{{ product.price }}</p>
+                <p class="text-sm text-gray-500 mt-1">Brand: {{ product.brand.name }}</p>
+                <p class="text-sm text-gray-600 mt-2">RAM: {{ product.ram }} | Storage: {{ product.storage }}</p>
+                <a href="{% url 'product_detail' product.slug %}" class="block mt-4 text-center bg-blue-600 text-white py-2 rounded hover:bg-blue-700">View Details</a>
+            {% empty %}
+            <p class="text-gray-500">No products found. Add products from the Django Admin panel!</p>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

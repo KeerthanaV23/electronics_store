@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: electronics-store
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn core.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.14
